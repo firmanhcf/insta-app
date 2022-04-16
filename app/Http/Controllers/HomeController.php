@@ -6,6 +6,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,7 @@ class HomeController extends Controller
 
     public function index()
     {
-    	return view('pages.home');
+    	$posts = Post::orderBy('created_at', 'desc')->get();
+    	return view('pages.home', compact('posts'));
     }
 }

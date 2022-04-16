@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card" style="width: 100%">
-  <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" alt="...">
+
+@foreach($posts as $p)
+<div class="card mb-4" style="width: 100%;padding: 0px !important;">
+  <img src="{{asset('/media/'.$p->photo)}}" class="card-img-top" alt="{{$p->caption}}">
   <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <span class="d-block"><strong>{{$p->user->name}}</strong> <span style="float: right">{{$p->created_at}}</span></span>
+    <p class="card-text">{{$p->caption}}</p>
   </div>
 </div>
+@endforeach
+
     
 @endsection
